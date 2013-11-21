@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>SENA - Sofia PLus</title>
+		<meta charset="utf-8">
+		<!--IMPORTAMOS PHONEGAP-->
+		<script type="text/javascript" charset="utf-8" src="cordova-1.9.0.js"></script>
+		<!--IMPORTAMOS JQUERY -->
+		<script src="jquery.mobile/jquery-1.7.2.min"></script>
+		<!--IMPORTAMOS JQUERY MOBILE-->
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes">
+		<link rel="stylesheet" href="jquery.mobile/jquery.mobile-1.1.0.css" />
+		<script src="jquery.mobile/jquery.mobile-1.1.0.min.js"></script>
+		<!--IMPORTAMOS INDEX.CSS -->
+		<link rel="stylesheet" href="index.css" />
+		<!--IMPORTAMOS LAS FUNCIONES PARA TRABAJAR CON AJAX, RED-->
+		<script src="funciones.js"></script>
+		<!--DESHABILITA LAS TRANSICIONES-->
+		<script>
+			$(document).bind('pageinit', function () {
+				 $.mobile.defaultPageTransition = 'none';				 
+				 });
+		</script>
+		<!--IMPORTAMOS API PHONEGAP-->
+		<script type="text/javascript" charset="utf-8" src="apis/storage.js"></script>
+		<script type="text/javascript" charset="utf-8" src="apis/connection.js"></script>
+	</head>
+	<body>
+		 <!-- PAGINA PRINCIPAL -->
+		<div id="pagAyuda" data-role="page" data-theme="d" class="cont" >
+		 <!-- CABECERA -->
+			<div data-role="header" data-theme="a" >
+				<div data-theme="d" width="100%" class="barnner1">
+					<img src="medios/ojo.png" alt="banner" width=100%/>
+				</div>			    	
+			<!-- Creamos la barra de menú -->
+				<div class="menu" data-role="navbar" data-theme="a">
+					<!-- Opciones de la barra de menú -->
+					<label align="left" >&nbsp;&nbsp;AYUDA</label>
+				</div>
+		    </div>
+			<!--BANNER DE  MENU HOME Y AYUDAS-->
+			<div id="logos">
+				<div id="home">
+				<a href="#"><img src="medios/home.png" onclick="sesion();" alt="banner" align="top-left"/></a>
+				</div>
+				
+				<div id="menus">
+				<a href="#" onclick="crearMenuLateral();"><img src="medios/menu.png" alt="banner" align="top-right"/></a>
+				</div>				
+			</div>
+			<br>
+             <!-- CONTENIDO -->			
+				<div data-role="content" data-theme="d" >
+					<div data-role="collapsible-set" data-theme="d" data-content-theme="a" >
+							<!-- LISTA DE PROGRAMAS -->
+							<div  data-role="collapsible"  >
+								<!-- TITULO DE LA  INQUIETUD -->
+								<h2>Inicio de  sesi&oacute;n</h2>
+								<!-- INFORMACION DEL PROGRAMA -->
+								<!-- contenedor -->
+								
+									<!-- hacia la derecha -->
+									<div class="ayudaTexto" >
+										<p>F&aacute;cil y sencillo podr&aacute;s logearte  en la aplicaci&oacute;n con solo ingresar tu tipo de  documento, usuario y contraseña.</p>										
+									</div>
+									<!-- hacia la izquierda -->
+									<div  class="ayudaImagen" align="center">
+									  <img src="medios/iniciarSesion.png" width="200px" height="300px" align="center"/>
+									  
+									</div>
+									<!-- DIV  PARA  LIMPIAR LA POSICION LEF  DE LOS  DIV   DE ARRIBA -->
+								<div class="ayudas" style="clear:both;">
+								</div>
+							</div>
+							<div class="Ayudota" data-role="collapsible" >
+								 <!-- TITULO DE LA  INQUIETUD -->
+								<h2>Si no estoy registrado ¿Qu&eacute; hago?</h2>
+									<!-- INFORMACION DEL PROGRAMA -->
+								
+									<div class="ayudaTexto" >
+											<p>En la  ventana  inicial de  la  aplicaci&oacute;n encontrar&aacute;s un link que te permitir&aacute;  registrarte en el sistema.</p>										
+										</div>
+										<!-- hacia la izquierda -->
+										<div  class="ayudaImagen" align="center">
+										  <img src="medios/registrarse.png" width="200px" height="300px" align="center"/>
+										  
+										</div>
+								<!-- DIV  PARA  LIMPIAR LA POSICION LEF  DE LOS  DIV   DE ARRIBA -->
+								<div class="ayudas" style="clear:both;">
+								</div>
+							</div>
+							<div  class="Ayudota" data-role="collapsible" >
+								<!-- TITULO DE LA  INQUIETUD -->
+								<h2>¿Com&oacute; inscribirme en un programa?</h2>
+								
+									<!-- hacia la derecha -->
+										<div class="ayudaTexto" >
+											<p>En la pantalla de inicio  de  la  aplicación sigue estos pasos:</br CLEAR=left>
+												<B>Oferta</B>.</br CLEAR=left>
+												 Buscamos el programa de inter&eacute;s.</br CLEAR=left>
+												Selecciona el  programa.</br CLEAR=left>
+												Acepta los  t&eacute;rminos.</br CLEAR=left>
+											    Presiona el bot&oacute;n inscribir.
+											</p>										
+										</div>
+										<!-- hacia la izquierda -->
+										<div  class="ayudaImagen" align="center">
+										  <img src="medios/inscripcion2.png" width="200px" height="300px" align="center"/>
+										  
+										</div>
+								<!-- DIV  PARA  LIMPIAR LA POSICION LEF  DE LOS  DIV   DE ARRIBA -->
+								<div class="ayudas" style="clear:both;">
+								</div>
+							</div>
+                            <div  class="Ayudota" data-role="collapsible">
+								<!-- TITULO DE LA  INQUIETUD -->
+								<h2>Ver mis  cursos</h2>
+									
+									<!-- hacia la derecha -->
+										<div class="ayudaTexto" >
+											<p>Debes haber iniciado sesi&oacute;n <B>(Ver Iniciar Sesi&oacute;n arriba)</B>, en la opci&oacute;n Mis cursos tendr&aacute;s acceso a  t&uacute; informaci&oacute;n  acad&eacute;mica.</p>										
+										</div>
+										<!-- hacia la izquierda -->
+										<div  class="ayudaImagen" align="center">
+										  <img src="medios/misCursos.png" width="200px" height="300px" align="center"/>
+										  
+										</div>
+									<!-- DIV  PARA  LIMPIAR LA POSICION LEF  DE LOS  DIV   DE ARRIBA -->
+								<div class="ayudas" style="clear:both;">
+								</div>
+							</div>							
+							<div  class="Ayudota" data-role="collapsible">
+								<!-- TITULO DE LA  INQUIETUD -->
+								<h2> Descargar mis certificados y constancias</h2>
+									
+									<!-- hacia la derecha -->
+										<div class="ayudaTexto" >
+											<p>Para descargar  tus  certificados  y /o constancias  acad&eacute;micas, deber&aacute;s  seleccionar la opci&oacute;n Certificados e ingresar  t&uacute;  tipo y n&uacute;mero de documento; si ya  iniciaste  sesi&oacute;n no ser&aacute;  necesario digitar su documento de identidad.</p>										
+										</div>
+										<!-- hacia la izquierda -->
+										<div  class="ayudaImagen" align="center">
+										  <img src="medios/primera.png" width="200px" height="300px" align="center"/>
+										  
+										</div>
+									<!-- DIV  PARA  LIMPIAR LA POSICION LEF  DE LOS  DIV   DE ARRIBA -->
+								<div class="ayudas" style="clear:both;">
+								</div>
+							</div>							
+							<div class="Ayudota" data-role="collapsible">
+								<!-- TITULO DE LA  INQUIETUD -->
+								<h2>Buscar informaci&oacute;n de los centros</h2>
+									<!-- hacia la derecha -->
+										<div class="ayudaTexto" >
+											<p>Selecciona la opci&oacute;n <b>Centros</b> para  tener  acceso a  todo lo que  quieres  saber de  t&uacute; centro de  formaci&oacute;n: geolocalizaci&oacute;n desde  Google Maps.</p>										
+										</div>
+										<!-- hacia la izquierda -->
+										<div  class="ayudaImagen" align="center">
+										  <img src="medios/MAPAS.png" width="200px" height="300px" align="center"/>
+										  
+										</div>
+									<!-- DIV  PARA  LIMPIAR LA POSICION LEF  DE LOS  DIV   DE ARRIBA -->
+								<div class="ayudas" style="clear:both;">
+								</div>
+							</div>		
+							<div class="Ayudota" data-role="collapsible">
+								<!-- TITULO DE LA  INQUIETUD -->
+								<h2>Modificar  mi informaci&oacute;n personal</h2>
+									
+									<!-- hacia la derecha -->
+										<div class="ayudaTexto" >
+											<p>T&uacute; informaci&oacute;n personal  la  puedes consultar y/o modificar desde la opci&oacute;n <b>Registro</b> que  se  encuentra  una  vez  realices el  Inicio Sesi&oacute;n.</p>										
+										</div>
+										<!-- hacia la izquierda -->
+										<div  class="ayudaImagen" align="center">
+										  <img src="medios/DATOS.png" width="200px" height="300px" align="center"/>
+										  
+										</div>
+								<!-- DIV  PARA  LIMPIAR LA POSICION LEF  DE LOS  DIV   DE ARRIBA -->
+								<div class="ayudas" style="clear:both;">
+								</div>
+							</div>
+							<div class="Ayudota" data-role="collapsible">
+								<!-- TITULO DE LA  INQUIETUD -->
+								<h2>Crear hoja de vida</h2>
+									
+									<!-- hacia la derecha -->
+										<div class="ayudaTexto" >
+											<p>Crea  t&uacute; hoja de  vida en  formato SENA, con solo presionar la  opci&oacute;n <b> Hoja de Vida</b>  teniendo en cuenta que debes  de haber Iniciado Sesi&oacute;n.</p>										
+										</div>
+										<!-- hacia la izquierda -->
+										<div  class="ayudaImagen" align="center">
+										  <img src="medios/HOJA.png" width="200px" height="300px" align="center"/>
+										  
+										</div>
+									<!-- DIV  PARA  LIMPIAR LA POSICION LEF  DE LOS  DIV   DE ARRIBA -->
+								<div class="ayudas" style="clear:both;">
+								</div>
+							</div>
+							<div class="Ayudota" data-role="collapsible">
+								<!-- TITULO DE LA  INQUIETUD -->
+								<h2>Autenticaci&oacute;n facial</h2>
+									
+									<!-- hacia la derecha -->
+										<div class="ayudaTexto" >
+											<p>La  aplicaci&oacute;n cuenta con una opci&oacute;n para  realizar  autenticaci&oacute;n facial, para ello se tomar&aacute; una foto con la  c&aacute;mara del dispositivo y el sistema  se encargar&aacute;  de  dar o denegar el acceso; dependiendo de  si, est&aacute;  o no, la persona registrada en el sistema.</p>
+										<br>	
+										</div>
+										<!-- hacia la izquierda -->
+										<div  class="ayudaImagen" align="center">
+										
+										  <img src="medios/AUTENTICACION.png" width="200px" height="300px" align="center"/>
+										  
+										</div>
+									<!-- DIV  PARA  LIMPIAR LA POSICION LEF  DE LOS  DIV   DE ARRIBA -->
+								<div class="ayudas" style="clear:both;">
+								</div>
+							</div>
+					</div>
+				</div>	
+			</div>
+		</div>
+	</body>
+</html>

@@ -1,0 +1,86 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>Incripcion</title>
+		<!--IMPORTAMOS PHONEGAP-->
+		<script type="text/javascript" charset="utf-8" src="cordova-1.9.0.js"></script>
+		<!--IMPORTAMOS JQUERY -->
+		<script src="jquery.mobile/jquery-1.7.2.min"></script>
+		<!--IMPORTAMOS JQUERY MOBILE-->
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes"/>
+		<link rel="stylesheet" href="jquery.mobile/jquery.mobile-1.1.0.css" />
+		<script src="jquery.mobile/jquery.mobile-1.1.0.min.js"></script>
+		<!--IMPORTAMOS INDEX.CSS -->
+		<link rel="stylesheet" href="index.css" />
+		<!-- IMPORTAMOS LAS FUNCIONES -->
+		<script src="funciones.js"></script>
+		<!--DESHABILITA LAS TRANSICIONES-->
+		<script>
+			$(document).bind('pageinit', function () {
+				 $.mobile.defaultPageTransition = 'none';				 
+				 });
+		</script>
+		<!--IMPORTAMOS API PHONEGAP-->
+		<script type="text/javascript" charset="utf-8" src="apis/storage.js"></script>
+		<script type="text/javascript" charset="utf-8" src="apis/connection.js"></script>
+	</head>
+	<body>
+		<!-- PAGINA PRINCIPAL -->
+		<div id="pagInscripcion" data-role="page" data-theme="d" class="cont">
+			<div data-role="header" data-theme="a" >
+				<div data-theme="d" width="100%" class="barnner1">
+					<img src="medios/ojo.png" alt="banner" width=100%/>
+				</div>			    	
+			<!-- Creamos la barra de menú -->
+				<div class="menu" data-role="navbar" data-theme="a">
+					<!-- Opciones de la barra de menú -->
+					<label align="left" >&nbsp;&nbsp;INSCRIPCI&Oacute;N </label>
+				</div>
+		    </div>
+			<!--BANNER DE  MENU HOME Y AYUDAS-->
+			<div id="logos">
+				<div id="home">
+				<a href="#"><img src="medios/home.png" onclick="sesion();" alt="banner" align="top-left"/></a>
+				</div>
+				
+				<div id="menus">
+				<a href="#" onclick="crearMenuLateral();"><img src="medios/menu.png" alt="banner" align="top-right"/></a>
+				</div>				
+			</div>	
+			
+			<!-- CONTENIDO -->
+			<div data-role="content" data-theme="d">
+					<select data-theme="b" data-icon="flecha" class="select">
+						<option>Tipo de Documento</option>
+						<option>CC</option>
+						<option>TI</option>
+					</select>
+					<br />
+					<!-- Creamos las cajas de texto  -->
+					<input type="text" id="txtUsuario" placeholder="Usuario"/><br />
+					<input type="password" id="txtPassword" placeholder="Contrase&ntilde;a"/><br />
+					<!-- Capa de informacion -->
+				    <div class="info">
+					     <br />
+						<!-- Requisitos del curso -->
+						<p class="info"><h4>Recuerde los requisitos de ingreso</h4></p>
+						<p class="info">Carta de presentación expedida por la comunidad.</p><p> Cumplir con el trámite de selección definido por el Centro<br /><br /></p>
+						
+					</div>
+					<!-- Caja de aceptacion de terminos -->
+					<label class="check">
+					
+					<input class="check" type="checkbox" id="acepto"/>  Certifico que cumplo con los requisitos mínimos de Ingreso al programa
+					</label>
+					<br />			
+                      <!-- BOTÓN DE TERMINAR -->
+					  <a class="btnAccion" data-role="button" onclick="terminar();" name="autenticar" data-theme="d">Terminar</a>
+					<br />
+					 <div class="btnAccion">
+					  <a class="btnAccion" href="http://oferta.senasofiaplus.edu.co/sofia-oferta/registro.html">Registrarse</a>
+					 </div>
+			</div>	
+		</div>
+	</body>
+</html>

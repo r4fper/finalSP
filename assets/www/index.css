@@ -1,0 +1,181 @@
+/* 05/11/2013 1:16 */
+
+/* esto es para   los colapsible  q estan dentro del ayuda ojo no borrar*/
+div.ayudaTexto{
+	float:left;
+	width:60%;
+	font-family:Arial,sans-serif; 
+	size:50%;
+}
+div.ayudaImagen{
+	float:left;
+	width:40%;
+}
+p{
+margin:3px,
+}
+
+/*Mensajes informativos*/
+#mensaje{
+	margin: 4px auto; 
+	border-left: 3px solid orange;
+	padding: 5px;
+}
+/* Alineación izquierda del texto de los botones */
+.ui-btn{
+	text-align: left;
+}
+/*Centrar texto de los botones*/
+.btnAccion {
+	text-align: center;
+	width:60%;
+	margin:0 auto;
+}
+/* Link visitados en color blanco */
+.btnAccion:visited {
+	color:white;
+}
+/* Letras de los botones seleccionados en negro */
+.btnAccion:hover {
+	color:black;
+}
+/*Configuracion Universal de los label */
+label{
+font-family:Arial,sans-serif; 
+size:120%;
+}
+/* Label del check de color blanco y letras negras */
+.check{
+background:white;
+color:black;
+border:0;
+}
+/*Icono flecha para SELECT*/
+span.ui-icon.ui-icon-flecha.ui-icon-shadow {
+	width: 7%;
+	height: 100%;
+	top:9px;
+	right:1px;
+	background-color: #fff;
+	padding-bottom: 0px;
+}
+/* OFERTAS jenny*/
+div.ui-collapsible.ui-collapsible-collapsed{
+	margin: 5px 0;
+}
+.ui-controlgroup .grup{
+	margin: 5px 0;
+}
+.ui-controlgroup .grup:visited {
+	color:white;
+}
+div.subtitulo{
+font-family:Arial,sans-serif;
+font-size:100%;
+
+}
+div.enfasis{
+font-family:Arial,sans-serif;
+font-size:120%;
+
+}
+
+/* ACTUALIZACION*/
+div.actualizacion{
+font-family:Arial,sans-serif;
+font-size:100%;
+
+}
+/* CENTROS*.. Oscar*/
+#centros,#mapal,#info{
+font-family:Arial,sans-serif;
+font-size:180%
+}
+/*el logo de  xcargar*/
+div.cargando  {
+		text-align:center; 
+		vertical-align:middle;
+}
+/* Capa de contenido */
+div.ui-content.ui-body-d{
+	width:80%;
+	margin:0 auto;
+	background:transparent;
+}
+/*logo en laparte  inferior  del sena*/
+div.ui-page.ui-body-d{
+		  background-image: url(medios/logofondo.png);	
+		  background-repeat: no-repeat;		
+		  background-position: 100% 100%;
+}
+/* Capa de información */
+div.info{
+border-color:#94928f;
+border: 1px;
+background:#dededd;
+border-radius:20px;
+padding:5px;
+}
+select:focus{
+box-shadow: inset 0 0 3px #dededd
+}
+/* Para los input de registro */
+input.txtText,span.ui-btn-text{
+font-size:100%;
+width:95%;
+}
+/*BARRA DEL BANNER*/
+
+#home{
+
+height:50px;
+float:left;
+margin:5px;
+
+}
+
+#menus{
+	
+	height:50px;
+	float:right;
+	margin:5px;	
+}
+#logos{
+width:100%;
+}
+a.opcion{
+vertical-align:text-baseline;
+}
+
+/* color del check */
+.ui-checkbox-on .ui-icon,
+.ui-radio-on .ui-icon {
+	background-color: #59B548 /*{global-active-background-color}*/; /* NOTE: this hex should match the active state color. It's repeated here for cascade */
+}
+.imagen{
+HEIGHT:100%;
+width:100%;
+}
+/*BARRA LATERAL DEL MENU AYUDA  CONFIGURACION*/
+#barraLateral{
+	position:absolute;
+	width:50%;
+	height:100%;
+	left:50%;
+	z-index:10;
+	background: grey !important;
+
+}
+/* Estilo de las viñetas */
+ul,ol{
+	list-style:none;
+		text-align: left;
+}
+#cargando{
+background-repeat: no-repeat;	
+   position:absolute;
+    top:50%;
+    left: 50%;
+    margin-top: 1%;
+    margin-left: -3%;
+}

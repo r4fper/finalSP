@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>OFERTA</title>
+				
+		<!--IMPORTAMOS PHONEGAP-->
+		<script type="text/javascript" charset="utf-8" src="cordova-1.9.0.js"></script>
+		
+		<!--IMPORTAMOS JQUERY -->
+		<script src="jquery.mobile/jquery-1.7.2.min"></script>
+		
+		<!--IMPORTAMOS JQUERY MOBILE-->
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes">
+		<link rel="stylesheet" href="jquery.mobile/jquery.mobile-1.1.0.css" />
+		<script src="jquery.mobile/jquery.mobile-1.1.0.min.js"></script>
+		
+		<!--IMPORTAMOS INDEX.CSS -->
+		<link rel="stylesheet" href="index.css" />
+		
+		<!--IMPORTAMOS LAS FUNCIONES PARA TRABAJAR CON AJAX, RED-->
+		<script src="funciones.js"></script>
+		<!--
+		<script type="text/javascript" src="https://maps.google.com/maps/api/js?sensor=true"></script>
+		-->
+		<!--DESHABILITA LAS TRANSICIONES-->
+		<script>
+			$(document).bind('pageinit', function () {
+				 $.mobile.defaultPageTransition = 'none';				 
+				 });
+		</script>
+		
+		<script>
+			/*$('div').live('swipe',function(){
+				var mensaje=document.getElementById('mensaje');
+				mensaje.style.visibility='hidden';						
+				});*/
+		</script>
+		<style type="text/css">
+		  .cont{
+		  background-image: url(logosena.png);
+		  background-repeat: no-repeat;
+		  background-position: 100% 100%;
+		  }
+		</style>
+		<style type="text/css">
+		
+		*{
+		padding:0px;
+		margin:0px;
+		}
+	#opciones1{
+		position:absolute;
+		left:50%;
+		width:50%;
+		height:150%;
+		z-index:2;
+		background: grey !important;
+		opacity: 0.8;
+		}
+		
+		ul,ol{
+		list-style:none;
+		}	
+				
+		</style>
+				
+	</head>
+	<body>
+		
+		<div data-role="page" data-theme="d">
+			<div id="opciones1" style="visibility:hidden">
+					
+					<ul data-role="listview" data-inset="true" data-theme="a">
+						    <li>
+							    <a href="ayuda.html">
+						        <img src="medios/ayuda.png">
+						        <label>AYUDA</label>
+							    </a>
+						    </li>
+							
+						    <li>
+							    <a href="#">
+						        <img src="medios/infor.png">
+						        <label>INFORMACI&Oacute;N</label>
+						        </a>
+						    </li>
+						    <li>
+							    <a href="#">
+						        <img src="medios/conf.png">
+						        <label>CONFIGURACI&Oacute;N</label>
+						        </a>
+						    </li>
+							</a>
+						    <li>
+							    <a href="#">
+						        <img src="medios/salir.png">
+						        <label>SALIR</label>
+						        </a>
+						    </li>
+						    
+					</ul>
+			</div>	
+			<div data-role="header" data-theme="a">
+					<img src="medios/banner1.png" alt="SENA - SOFIA PLUS" width=100% />
+					<div data-role="navbar">
+					<!-- Opciones de la barra de menú -->
+					<label>&nbsp;&nbsp;OFERTAS </label>
+					</div>
+			</div>
+			
+			<div data-role="content" data-theme="d" >
+			  <div style="width:100%;height:100%;" class="cont">
+				<label >Programas Ofertados</label>
+						<div data-role="collapsible-set" data-theme="d" data-content-theme="d">
+							<div data-role="collapsible">
+								<h1>Avanzado trabajo en altura</h1>
+								<div class="subtitulo">
+									Duraci&oacute;n
+								</div>
+								<div class="enfasis">
+									40 horas
+								</div>
+								<br>
+								<div class="subtitulo">
+									Linea o área
+								</div>
+								<div class="enfasis">
+									Cliente
+								</div>
+								<br>
+								<div class="subtitulo">
+									Nivel educativo
+								</div>
+								<div class="enfasis">
+									No aplica
+								</div>
+								<table>
+									<tr>
+										<td></td>
+										<td>
+											<a id="btnEnviar" href="inscripcion.html" data-role="button" onclick="consultarServidor(this.name);" name="autenticar" data-theme="d">Inscripci&oacute;n</a>
+										</td>
+										<td></td>
+									</tr>
+								</table>
+
+							</div>
+							<div data-role="collapsible">
+								<h2>Servicio al cliente</h2>
+								<div class="subtitulo">
+									Duraci&oacute;n
+								</div>
+								<div class="enfasis">
+									20 horas
+								</div>
+								<br>
+								<div class="subtitulo">
+									Linea o área
+								</div>
+								<div class="enfasis">
+									Cliente
+								</div>
+								<br>
+								<div class="subtitulo">
+									Nivel educativo
+								</div>
+								<div class="enfasis">
+									No aplica
+								</div>
+								<table>
+									<tr>
+										<td></td>
+										<td>
+											<a id="btnEnviar" href="inscripcion.html" data-role="button" onclick="consultarServidor(this.name);" name="autenticar" data-theme="d">Inscripci&oacute;n</a>
+										</td>
+										<td></td>
+									</tr>
+								</table>
+							</div>
+							<div data-role="collapsible" >
+								<h3>Formaci&oacute;n de valores para una cultura de  excelencia en el servicio</h3>
+								<div class="subtitulo">
+									Duraci&oacute;n
+								</div>
+								<div class="enfasis">
+									40 horas
+								</div>
+								<br>
+								<div class="subtitulo">
+									Linea o área
+								</div>
+								<div class="enfasis">
+									Cliente
+								</div>
+								<br>
+								<div class="subtitulo">
+									Nivel educativo
+								</div>
+								<div class="enfasis">
+									No aplica
+								</div>
+								<table>
+									<tr>
+										<td></td>
+										<td>
+											<a id="btnEnviar" href="inscripcion.html" data-role="button" onclick="consultarServidor(this.name);" name="autenticar" data-theme="d">Inscripci&oacute;n</a>
+										</td>
+										<td></td>
+									</tr>
+								</table>
+
+							</div>
+							<div data-role="collapsible">
+								<h2>Analisis y desarrollo de  sistemas de  informaci&oacute;n</h2>
+								<div class="subtitulo">
+									Duraci&oacute;n
+								</div>
+								<div class="enfasis">
+									 24 meses
+								</div>
+								<br>
+								<div class="subtitulo">
+									Linea o área
+								</div>
+								<div class="enfasis">
+									Público
+								</div>
+								<br>
+								<div class="subtitulo">
+									Nivel educativo
+								</div>
+								<div class="enfasis">
+									Bachiller
+								</div>
+								<table>
+									<tr>
+										<td></td>
+										<td>
+											<a id="btnEnviar" href="inscripcion.html" data-role="button" onclick="consultarServidor(this.name);" name="autenticar" data-theme="d">Inscripci&oacute;n</a>
+										</td>
+										<td></td>
+									</tr>
+								</table>
+							</div>
+						</div>
+						</div>	
+			</div>
+			<!-- ***************PIE DE  PAGINA*************************** -->
+			<!-- ***************PIE DE  PAGINA*************************** -->
+				<div data-role="footer" data-position="fixed">
+					<h4>&copy; SENA 2013</h4>
+				</div>
+		</div>
+	</body>
+</html>

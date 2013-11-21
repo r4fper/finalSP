@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>SENA - Sofia PLus</title>
+		<meta charset="utf-8">
+		<!--IMPORTAMOS JQUERY -->
+		<script src="jquery.mobile/jquery-1.7.2.min"></script>
+		<!--IMPORTAMOS JQUERY MOBILE-->
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes">
+		<link rel="stylesheet" href="jquery.mobile/jquery.mobile-1.1.0.css" />
+		<script src="jquery.mobile/jquery.mobile-1.1.0.min.js"></script>
+		<!--IMPORTAMOS INDEX.CSS-->
+		<link rel="stylesheet" href="index.css" />
+		<!--IMPORTAMOS LAS FUNCIONES PARA TRABAJAR CON AJAX, RED-->
+		<script src="funciones.js"></script>
+		<!--DESHABILITA LAS TRANSICIONES-->
+		<script>
+			$(document).bind('pageinit', function () {
+				 $.mobile.defaultPageTransition = 'none';				 
+				 });
+		</script>
+		<!--IMPORTAMOS API PHONEGAP-->
+		<script type="text/javascript" charset="utf-8" src="apis/storage.js"></script>
+		<script type="text/javascript" charset="utf-8" src="apis/connection.js"></script>
+	</head>
+	<body>
+		<!-- PAGINA CERTIFICADOS -->
+		<div  data-role="page" data-theme="d" id="pagCertificado">	
+			<script>
+			$(document).ready(function(){
+				verificarIdioma('pagCertificado');
+				});
+		</script>
+			<!-- CABECERA-->
+			<div data-role="header" data-theme="a" >
+				<div data-theme="d" width="100%" class="barnner1">
+					<img src="medios/ojo.png" alt="banner" width="100%" />
+				</div>			    	
+			<!-- Creamos la barra de menú -->
+				<div class="menu" data-role="navbar" data-theme="a">
+					<!-- Opciones de la barra de menú -->
+					<label id="titulo" align="left" >&nbsp;&nbsp;CERTIFICADOS</label>
+				</div>
+		    </div>
+			<!--BANNER DE  MENU HOME Y AYUDAS-->
+			<div id="logos">
+				<div id="home">
+				<a href="#"><img src="medios/home.png" onclick="sesion();" alt="banner" align="top-left"/></a>
+				</div>
+				
+				<div id="menus">
+				<a href="#" onclick="crearMenuLateral();"><img src="medios/menu.png" alt="banner" align="top-right"/></a>
+				</div>				
+			</div>	
+				<!-- CONTENIDO DE LA PAGINA -->
+				<!-- Creamos el cuerpo o contenido de la página -->		
+				<div data-role="content" data-theme="d">
+					<!-- Creamos la caja de texto para seleccionar el tipo de  documento  -->
+						<br /><br />
+						<select name="select-native-1" id="selectTipo" data-theme="b" data-icon="flecha">
+							<option value="Tip">Tipo de Documento </option>
+							<option value="CC">CC </option>
+							<option value="TI">TI</option>
+							<option value="CE">CE</option>
+							<option value="PS">PS</option>
+							<option value="RC">RC</option>
+							<option value="NIS">NIS</option>
+							<option value="DNI">DNI</option>
+							<option value="RUI">RUI</option>
+						</select>
+						<br>
+						<input type="text" id="txtIdUsu" placeholder="N&uacute;mero de Documento"/>
+						<br>
+						<a id="buscar" class="btnAccion" data-role="button" data-theme="d" onclick="consultarServidor(this.name,'pagCertificado');" name="certificados">BUSCAR</a>
+						<div id="contenido">
+						</div>
+				</div>			
+		</div>	
+	</body>
+</html>

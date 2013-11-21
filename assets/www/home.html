@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>HOME</title>
+		<!--IMPORTAMOS PHONEGAP-->
+		<script type="text/javascript" charset="utf-8" src="cordova-1.9.0.js"></script>
+		<!--IMPORTAMOS JQUERY -->
+		<script src="jquery.mobile/jquery-1.7.2.min"></script>
+		<!--IMPORTAMOS JQUERY MOBILE-->
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes" />
+		<link rel="stylesheet" href="jquery.mobile/jquery.mobile-1.1.0.css" />
+		<script src="jquery.mobile/jquery.mobile-1.1.0.min.js"></script>
+		<!--IMPORTAMOS INDEX.CSS -->
+		<link rel="stylesheet" href="index.css" />
+		<!--IMPORTAMOS LAS FUNCIONES PARA TRABAJAR CON AJAX, RED-->
+		<script src="funciones.js"></script>
+		<!--IMPORTAMOS google maps-->
+		<script type="text/javascript" src="https://maps.google.com/maps/api/js?sensor=true"></script>
+		<!--DESHABILITA LAS TRANSICIONES-->
+		<script>
+			$(document).bind('pageinit', function () {
+				 $.mobile.defaultPageTransition = 'none';				 
+				 });
+		</script>
+		<!--IMPORTAMOS API PHONEGAP-->
+		<script type="text/javascript" charset="utf-8" src="apis/storage.js"></script>
+		<script type="text/javascript" charset="utf-8" src="apis/connection.js"></script>
+	</head>
+	<body>		
+	    <!-- PAGINA PRINCIPAL -->
+		<div id="pagHome" data-role="page" data-theme="d">
+		<script>
+				$(document).ready(function(){
+					verificarIdioma('pagHome');
+				});
+			</script>
+		    <!-- CABECERA -->
+			<div data-role="header" data-theme="a" >
+				<div data-theme="d" width="100%" class="barnner1">
+					<img src="medios/ojo.png" alt="banner" width="100%"/>
+				</div>			    	
+			<!-- Creamos la barra de menú -->
+				<div class="menu" data-role="navbar" data-theme="a">
+					<!-- Opciones de la barra de menú -->
+					<label align="left" >&nbsp;&nbsp;CRISTIAN ESCORCIA</label>
+				</div>
+		    </div>
+			<!--BANNER DE  MENU HOME Y AYUDAS-->
+			<div id="logos">
+				<div id="home">
+					<a href="#"><img src="medios/home.png" onclick="sesion();" alt="banner" align="top-left"></a>
+				</div>		
+				
+				<div id="menus">
+				<a href="#" onclick="crearMenuLateral();"><img src="medios/menu.png" alt="banner" align="top-right"/></a>
+				</div>				
+			</div>
+			<!-- CONTENIDO -->
+			<div data-role="content" id="contenidoForma" data-theme="d">
+				<br />
+			    <!-- ESTAS OPCIONES TE PERMITIRAN NAVEGAR POR LOS DISTINTOS MENUS QUE TIENE EL INDEX  -->
+				<div data-role="controlgroup">
+					<a class="grup" id="btnCursos" href="#" onclick="consultarServidor(this.name,'pagHome');" name="formacion"data-role="button">MIS CURSOS</a>
+					<a class="grup" id="btnoferta" href="ofertas.html" data-role="button">OFERTAS</a>
+					<a class="grup" id="btncertificado" href="certificados.html" data-role="button">CERTIFICADOS</a>
+					<a class="grup" id="btncentros" href="centros.html" onclick="crearCargando('pagHome');" data-role="button">CENTROS</a>
+					<a class="grup" id="btnRegistro" href="actualizarDatos.html" data-role="button">REGISTROS</a>
+					<a class="grup" id="btnHoja" href="#" onclick="consultarServidor('hojaVida','pagHome');" data-role="button">HOJA DE  VIDA</a>
+			
+				</div>
+			</div>  
+		</div>
+	</body>
+</html>

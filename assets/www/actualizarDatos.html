@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+		<!--IMPORTAMOS PHONEGAP-->
+		<script type="text/javascript" charset="utf-8" src="cordova-1.9.0.js"></script>
+		<!--IMPORTAMOS JQUERY -->
+		<script src="jquery.mobile/jquery-1.7.2.min"></script>
+		<!--IMPORTAMOS JQUERY MOBILE-->
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes">
+		<link rel="stylesheet" href="jquery.mobile/jquery.mobile-1.1.0.css" />
+		<script src="jquery.mobile/jquery.mobile-1.1.0.min.js"></script>
+		<!--IMPORTAMOS INDEX.CSS -->
+		<link rel="stylesheet" href="index.css" />
+		<!--IMPORTAMOS LAS FUNCIONES PARA TRABAJAR CON AJAX, RED-->
+		<script src="funciones.js"></script>
+		<!--DESHABILITA LAS TRANSICIONES-->
+		<script>
+			$(document).bind('pageinit', function () {
+				 $.mobile.defaultPageTransition = 'none';				 
+				 });
+		</script>	
+		<!--IMPORTAMOS API PHONEGAP-->
+		<script type="text/javascript" charset="utf-8" src="apis/storage.js"></script>
+		<script type="text/javascript" charset="utf-8" src="apis/connection.js"></script>
+</head>
+<body>
+	 <!-- Creamos la página -->
+	<div id="pagActualizacion"  data-role="page" data-theme="d">
+	<script>
+		$(document).ready(function(){
+			verificarIdioma('pagActualizacion');
+		});
+	</script>
+	<!-- CABECERA -->
+			<div data-role="header" data-theme="a" >
+				<div data-theme="d" width="100%" class="barnner1">
+					<img src="medios/ojo.png" alt="banner" width=100%/>
+				</div>			    	
+			<!-- Creamos la barra de menú -->
+				<div class="menu" data-role="navbar" data-theme="a">
+					<!-- Opciones de la barra de menú -->
+					<label align="left" >&nbsp;&nbsp;ACTUALIZACI&Oacute;N DE DATOS </label>
+				</div>
+		    </div>
+			<!--BANNER DE  MENU HOME Y AYUDAS-->
+			<div id="logos">
+				<div id="home">
+				<a href="#"><img src="medios/home.png" onclick="sesion();" alt="banner" align="top-left"/></a>
+				</div>
+				
+				<div id="menus">
+				<a href="#" onclick="crearMenuLateral();"><img src="medios/menu.png" alt="banner" align="top-right"/></a>
+				</div>				
+			</div>
+				
+		<br>
+		<center>
+		<!-- Creamos el cuerpo o contenido de la página -->
+  <div data-role="content" data-theme="d" class="cont" id="ActualizacionDatos">
+	<BR><div data-role="collapsible-set" data-theme="d" data-content-theme="d">
+	<div data-role="collapsible">
+			<!-- informacion personal SOLO LECTURA-->
+			<h3>Informaci&oacute;n Personal</h3>
+				<select id="tipo" data-theme="b" data-icon="flecha"  disabled>
+				<!-- no se puede  cambiar -->
+					<option id="tipo">Tipo de Documento</option>
+					<option>C&eacute;dula de Ciudadan&iacute;a</option>
+					<option>Pasaporte</option>
+					<option>N&uacute;mero Ciego SENA</option>
+					<option>Documento Nacional de Identificac&iacute;on</option>
+					<option>Numero de Identificaci&oacute;n Tributaria</option>
+					<option>C&eacute;dula de Extranjer&iacute;a</option>
+				</select>
+					<br>
+					<!-- no se puede  cambiar -->								
+					<input type="text" id="doc" class="txtText" value="1143" disabled>
+					<br> 
+						<!-- no se puede  cambiar -->
+					<input type="date"  id="fechaExp" class="txtText" VALUE="marzo-25-2006" disabled/>
+					<br> 
+					<!-- no se puede  cambiar -->								  
+					<input type="text" id="nombre" class="txtText" VALUE="CRISTIAN DAVID" disabled/>
+					<br> 
+					<input type="text" id="apellido" class="txtText"  VALUE="ESCORCIA "  disabled/>
+					<br> 
+					<input type="date"  id="fechaNac" class="txtText" VALUE="1987-07-15"  disabled/>
+					<br>
+						<!-- no se puede  cambiar -->
+													
+					<input type="text"  id="estado" class="txtText" placeholder="Estado civil"/>
+					<br>
+					<input type="text"  id="EPS" class="txtText" placeholder="EPS"/>
+					<br>								
+			</div>
+			<!-- ACTUALIZACION -->
+			<!-- Lugar de residencia -->
+			<div data-role="collapsible">
+				<br>
+				<input type="text" id="telefono"class="txtText"placeholder="Direcci&oacute;n" id="direc">
+				 <br>
+				 <input type="text" id="direccion"class="txtText"placeholder="Tel&eacute;fono" id="tel">
+				 <br>
+				 				 
+			</div>
+			<div data-role="collapsible">
+				<!-- datos del contacto -->
+				<h1>Contacto</h1>
+				<input type="text" id="nomContacto" class="txtText" placeholder="Nombre de Contacto*">
+				<br>
+				<input type="text" id="telContacto" class="txtText"  placeholder="Tel&eacute;fono de Contacto*">
+				<br>
+				<input type="text" id="parentesto" class="txtText"  placeholder="Parentesco">
+				<br>
+				<input type="text" id="empresa" class="txtText"  placeholder="Empresa Donde Labora">
+				<br>
+				<input type="text" id="CARGO" class="txtText" placeholder="Cargo"/>
+				<br>
+				<input type="date" id="fechaContacto" class="txtText" placeholder="Fecha de Nacimiento">
+			</div>
+		</div>
+		
+			   
+		</div>	
+		     <BR>
+			<a id="guardar" class="btnAccion" data-role="button" onclick="consultarServidor(this.name,'pagActualizacion');"  name="actualizarDatos" data-theme="d">GUARDAR</a>
+	</div>
+</body>
+</html>

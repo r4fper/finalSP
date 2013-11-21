@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>SENA - Sofia PLus</title>
+		<meta charset="utf-8">
+		<!--IMPORTAMOS PHONEGAP-->
+		<script type="text/javascript" charset="utf-8" src="cordova-1.9.0.js"></script>
+		<!--IMPORTAMOS JQUERY -->
+		<script src="jquery.mobile/jquery-1.7.2.min"></script>
+		<!--IMPORTAMOS JQUERY MOBILE-->
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes">
+		<link rel="stylesheet" href="jquery.mobile/jquery.mobile-1.1.0.css" />
+		<script src="jquery.mobile/jquery.mobile-1.1.0.min.js"></script>
+		<!--IMPORTAMOS INDEX.CSS -->
+		<link rel="stylesheet" href="index.css" />
+		<!--IMPORTAMOS LAS FUNCIONES PARA TRABAJAR CON AJAX, RED-->
+		<script src="funciones.js"></script>
+		<!--DESHABILITA LAS TRANSICIONES-->
+		<script>
+			$(document).bind('pageinit', function () {
+				 $.mobile.defaultPageTransition = 'none';				 
+				 });
+		</script>
+		
+		<!--IMPORTAMOS API PHONEGAP-->
+		<script type="text/javascript" charset="utf-8" src="apis/storage.js"></script>
+		<script type="text/javascript" charset="utf-8" src="apis/connection.js"></script>
+	</head>
+	<body onload="onBodyLoad()">
+		 <!-- PAGINA PRINCIPAL -->
+		<div data-role="page" data-theme="d" class="cont" id="acercaDe">
+		<script>
+			$(document).ready(function(){
+				verificarIdioma('acercaDe');
+			});
+		</script>
+		  <!-- CABECERA -->
+			<div data-role="header" data-theme="a" >
+				<div data-theme="d" width="100%" class="barnner1">
+					<img src="medios/ojo.png" alt="banner" width=100%/>
+				</div>			    	
+			<!-- Creamos la barra de menú -->
+				<div class="menu" data-role="navbar" data-theme="a">
+					<!-- Opciones de la barra de menú -->
+					<label align="left" id="acerca" >&nbsp;&nbsp;ACERCA DE...</label>
+				</div>
+		    </div>
+			<!--BANNER DE  MENU HOME Y AYUDAS-->
+			<div id="logos">
+				<div id="home">
+				<a href="#"><img src="medios/home.png" onclick="sesion();" alt="banner" align="top-left"/></a>
+				</div>
+				
+				<div id="menus">
+				<a href="#" onclick="crearMenuLateral();"><img src="medios/menu.png" alt="banner" align="top-right"/></a>
+				</div>				
+			</div>
+			<BR>
+			
+             <!-- CONTENIDO -->			
+				<div data-role="content" data-theme="d">
+					 <div data-role="content" data-theme="d" >
+						<p align="center"><IMG src="medios/acercade.png" style="float:center;"/></p>
+						<p align="justify">Sp Movil est&aacute; dise&ntilde;ado por un grupo de aprendices  del SENA, Centro Nacional Colombo Alem&aacute;n,
+							que  trabajando en conjunto ha logrado desarrollar esta aplicaci&oacute;n m&oacute;vil; para  el mejoramiento y optimizaci&oacute;n del Sistema de Informaci&oacute;n web: <a href="http://oferta.senasofiaplus.edu.co/sofia-oferta/">
+							Sofia Plus</a>; para el alcance de toda la comunidad educativa.</p>
+						<p><b>Jefe de Proyecto</b></p><p>Ing. Rafael P&eacute;rez Meri&ntilde;o</p>
+						<p><b>Dise&ntilde;adora</b></p><p> Ianua Maldonado Fern&aacute;ndez </p>
+						<p><b>Desarrolladores</b></p><p> Jes&uacute;s Mendoza Sanchez<br/>Jenny Gonz&aacute;lez Freile<br/>Cristian Escorcia Guzm&aacute;n<br/>Oscar Cantillo Menco</p>
+						<p><b>Colaboradores</b></p><p> Emiliano Arteta Ortega<br/>Teobaldo Beltr&aacute;n Lamadrid <br/>Kenny Aguilar Villadiego<br/>Manuel Camargo<br/>Antonio Sierra Hurtado<br/>Yosimar Colina Villacob</p>
+					
+					</div>
+				</div>	
+			</div>
+		</div>
+	</body>
+</html>
+
+
+
+
+

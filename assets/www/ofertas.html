@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>OFERTA</title>
+		<!--IMPORTAMOS PHONEGAP-->
+		<script type="text/javascript" charset="utf-8" src="cordova-1.9.0.js"></script>
+		<!--IMPORTAMOS JQUERY -->
+		<script src="jquery.mobile/jquery-1.7.2.min"></script>
+		<!--IMPORTAMOS JQUERY MOBILE-->
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes" />
+		<link rel="stylesheet" href="jquery.mobile/jquery.mobile-1.1.0.css" />
+		<script src="jquery.mobile/jquery.mobile-1.1.0.min.js"></script>
+		<!--IMPORTAMOS INDEX.CSS -->
+		<link rel="stylesheet" href="index.css" />
+		<!--IMPORTAMOS LAS FUNCIONES PARA TRABAJAR CON AJAX, RED-->
+		<script src="funciones.js"></script>
+		<!--DESHABILITA LAS TRANSICIONES-->
+		<script>
+			$(document).bind('pageinit', function () {
+				 $.mobile.defaultPageTransition = 'none';				 
+				 });
+		</script>
+		<!--IMPORTAMOS API PHONEGAP-->
+		<script type="text/javascript" charset="utf-8" src="apis/storage.js"></script>
+		<script type="text/javascript" charset="utf-8" src="apis/connection.js"></script>
+	</head>
+	<body>
+		
+		<!-- Contenedor de la página-->
+		<div id="pagOferta" data-role="page" data-theme="d">
+		<script>
+			$(document).ready(function(){
+				verificarIdioma('pagOferta');
+				});
+		</script>
+			<div data-role="header" data-theme="a" >
+				<div data-theme="d" width="100%" class="barnner1">
+					<img src="medios/ojo.png" alt="banner" width="100%" />
+				</div>			    	
+			<!-- Creamos la barra de menú -->
+				<div class="menu" data-role="navbar" data-theme="a">
+					<!-- Opciones de la barra de menú -->
+					<label id="titulo" align="left" >&#160;&#160;OFERTAS </label>
+				</div>
+		    </div>
+			<!--BANNER DE  MENU HOME Y AYUDAS-->
+			<div id="logos">
+				<div id="home">
+				<a href="#"><img src="medios/home.png" onclick="sesion();" alt="banner" align="top-left"></a>
+				</div>
+				
+				<div id="menus">
+				<a href="#" onclick="crearMenuLateral();"><img src="medios/menu.png" alt="banner" align="top-right"></a>
+				</div>				
+			</div>
+			<!-- Contenido de la página-->
+			<div data-role="content" data-theme="d" >
+					<br />	
+					<!-- Buscar oferta por palabra clave-->
+					<input type="text" id="txtBuscar" placeholder="Buscar programas"/>
+					<br />
+					<!-- Listado de Tipo de formación-->
+					<select data-theme="b" data-icon="flecha" disabled>
+						<option>Tipo de formaci&#243;n</option>
+						<option>CARRERAS TECNICAS</option>
+						<option>CURSOS CORTOS</option>
+						<option>FORMACION VIRTUAL</option>
+						<option>FORMACION EMPRESAS</option>
+					</select>
+					<br />
+					<!-- Listado de Regionales-->
+					<select data-theme="b" data-icon="flecha" disabled>
+							<option>Todas las Regionales</option>
+							<option>AMAZONAS</option>
+							<option>ANTIOQUIA</option>
+							<option>ARAUCA</option>
+							<option>SAN ANDRES Y PROVIDENCIA</option>
+							<option>ATLANTICO</option>
+							<option>BOYACA</option>
+							<option>CALDAS</option>
+							<option>CAQUETA</option>
+							<option>CASANARE</option>
+							<option>CESAR</option>
+					</select>
+					<br />
+					<!-- BOTÓN DE BUSCAR -->
+					<a class="btnAccion" id="btnEnviar"  data-role="button" onclick="consultarServidor(this.name,'pagOferta');" name="buscarOferta" data-theme="d">BUSCAR</a>
+					<div id="contenido">
+					</div>
+			</div>
+		</div>
+	</body>
+</html>

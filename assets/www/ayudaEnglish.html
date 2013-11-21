@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>SENA - Sofia PLus</title>
+		<meta charset="utf-8">
+		<!--IMPORTAMOS PHONEGAP-->
+		<script type="text/javascript" charset="utf-8" src="cordova-1.9.0.js"></script>
+		<!--IMPORTAMOS JQUERY -->
+		<script src="jquery.mobile/jquery-1.7.2.min"></script>
+		<!--IMPORTAMOS JQUERY MOBILE-->
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes">
+		<link rel="stylesheet" href="jquery.mobile/jquery.mobile-1.1.0.css" />
+		<script src="jquery.mobile/jquery.mobile-1.1.0.min.js"></script>
+		<!--IMPORTAMOS INDEX.CSS -->
+		<link rel="stylesheet" href="index.css" />
+		<!--IMPORTAMOS LAS FUNCIONES PARA TRABAJAR CON AJAX, RED-->
+		<script src="funciones.js"></script>
+		<!--DESHABILITA LAS TRANSICIONES-->
+		<script>
+			$(document).bind('pageinit', function () {
+				 $.mobile.defaultPageTransition = 'none';				 
+				 });
+		</script>
+		<!--IMPORTAMOS API PHONEGAP-->
+		<script type="text/javascript" charset="utf-8" src="apis/storage.js"></script>
+		<script type="text/javascript" charset="utf-8" src="apis/connection.js"></script>
+	</head>
+	<body>
+		 <!-- PAGINA PRINCIPAL -->
+		<div id="pagAyuda" data-role="page" data-theme="d" class="cont" >
+		 <!-- CABECERA -->
+			<div data-role="header" data-theme="a" >
+				<div data-theme="d" width="100%" class="barnner1">
+					<img src="medios/ojo.png" alt="banner" width=100%/>
+				</div>			    	
+			<!-- Creamos la barra de menú -->
+				<div class="menu" data-role="navbar" data-theme="a">
+					<!-- Opciones de la barra de menú -->
+					<label align="left" >&nbsp;&nbsp;HELP</label>
+				</div>
+		    </div>
+			<!--BANNER DE  MENU HOME Y AYUDAS-->
+			<div id="logos">
+				<div id="home">
+				<a href="#"><img src="medios/home.png" onclick="sesion();" alt="banner" align="top-left"/></a>
+				</div>
+				
+				<div id="menus">
+				<a href="#" onclick="crearMenuLateral();"><img src="medios/menu.png" alt="banner" align="top-right"/></a>
+				</div>				
+			</div>
+			<br>
+             <!-- CONTENIDO -->			
+				<div data-role="content" data-theme="d" >
+					<div data-role="collapsible-set" data-theme="d" data-content-theme="a" >
+							<!-- LISTA DE PROGRAMAS -->
+							<div  data-role="collapsible"  >
+								<!-- TITULO DE LA  INQUIETUD -->
+								<h2>Login</h2>
+								<!-- INFORMACION DEL PROGRAMA -->
+								<!-- contenedor -->
+								
+									<!-- hacia la derecha -->
+									<div class="ayudaTexto" >
+										<p>Easy and simple you can login in the application with only enter your type of document, user, and password.</p>										
+									</div>
+									<!-- hacia la izquierda -->
+									<div  class="ayudaImagen" align="center">
+									  <img src="medios/iniciarSesion.png" width="200px" height="300px" align="center"/>
+									  
+									</div>
+									<!-- DIV  PARA  LIMPIAR LA POSICION LEF  DE LOS  DIV   DE ARRIBA -->
+								<div class="ayudas" style="clear:both;">
+								</div>
+							</div>
+							<div class="Ayudota" data-role="collapsible" >
+								 <!-- TITULO DE LA  INQUIETUD -->
+								<h2>If I am not registered. Do I do?</h2>
+									<!-- INFORMACION DEL PROGRAMA -->
+								
+									<div class="ayudaTexto" >
+											<p>In the initial window of the application you will find a link that you will register in the system.</p>										
+										</div>
+										<!-- hacia la izquierda -->
+										<div  class="ayudaImagen" align="center">
+										  <img src="medios/registrarse.png" width="200px" height="300px" align="center"/>
+										  
+										</div>
+								<!-- DIV  PARA  LIMPIAR LA POSICION LEF  DE LOS  DIV   DE ARRIBA -->
+								<div class="ayudas" style="clear:both;">
+								</div>
+							</div>
+							<div  class="Ayudota" data-role="collapsible" >
+								<!-- TITULO DE LA  INQUIETUD -->
+								<h2>If you would like to enroll in a program?</h2>
+								
+									<!-- hacia la derecha -->
+										<div class="ayudaTexto" >
+											<p>On application startup screen follow these steps:</br CLEAR=left>
+												<B>Offer</B>.</br CLEAR=left>
+												 We are looking for the program of interest.</br CLEAR=left>
+												 Select the program.</br CLEAR=left>
+												 Agree to the terms.</br CLEAR=left>
+											     Press the button register.
+											</p>										
+										</div>
+										<!-- hacia la izquierda -->
+										<div  class="ayudaImagen" align="center">
+										  <img src="medios/inscripcion2.png" width="200px" height="300px" align="center"/>
+										  
+										</div>
+								<!-- DIV  PARA  LIMPIAR LA POSICION LEF  DE LOS  DIV   DE ARRIBA -->
+								<div class="ayudas" style="clear:both;">
+								</div>
+							</div>
+                            <div  class="Ayudota" data-role="collapsible">
+								<!-- TITULO DE LA  INQUIETUD -->
+								<h2>See my courses</h2>
+									
+									<!-- hacia la derecha -->
+										<div class="ayudaTexto" >
+											<p>You must be logged <b>(see log above)</b>, in the My courses you will have access to your academic information option.</p>										
+										</div>
+										<!-- hacia la izquierda -->
+										<div  class="ayudaImagen" align="center">
+										  <img src="medios/misCursos.png" width="200px" height="300px" align="center"/>
+										  
+										</div>
+									<!-- DIV  PARA  LIMPIAR LA POSICION LEF  DE LOS  DIV   DE ARRIBA -->
+								<div class="ayudas" style="clear:both;">
+								</div>
+							</div>							
+							<div  class="Ayudota" data-role="collapsible">
+								<!-- TITULO DE LA  INQUIETUD -->
+								<h2> Download my certificates and attestations</h2>
+									
+									<!-- hacia la derecha -->
+										<div class="ayudaTexto" >
+											<p>To download your certificates, and/or academic records, you should choose the certificates option and enter your type and number of the document; If you already started session will need not enter your identity document.</p>										
+										</div>
+										<!-- hacia la izquierda -->
+										<div  class="ayudaImagen" align="center">
+										  <img src="medios/primera.png" width="200px" height="300px" align="center"/>
+										  
+										</div>
+									<!-- DIV  PARA  LIMPIAR LA POSICION LEF  DE LOS  DIV   DE ARRIBA -->
+								<div class="ayudas" style="clear:both;">
+								</div>
+							</div>							
+							<div class="Ayudota" data-role="collapsible">
+								<!-- TITULO DE LA  INQUIETUD -->
+								<h2>Look up information centers</h2>
+									<!-- hacia la derecha -->
+										<div class="ayudaTexto" >
+											<p>Select <b>Centres</b> to access everything you want to know your training center: Google Maps Geolocation.</p>										
+										</div>
+										<!-- hacia la izquierda -->
+										<div  class="ayudaImagen" align="center">
+										  <img src="medios/MAPAS.png" width="200px" height="300px" align="center"/>
+										  
+										</div>
+									<!-- DIV  PARA  LIMPIAR LA POSICION LEF  DE LOS  DIV   DE ARRIBA -->
+								<div class="ayudas" style="clear:both;">
+								</div>
+							</div>		
+							<div class="Ayudota" data-role="collapsible">
+								<!-- TITULO DE LA  INQUIETUD -->
+								<h2>Modify my personal information</h2>
+									
+									<!-- hacia la derecha -->
+										<div class="ayudaTexto" >
+											<p>You can check your personal information or modify from the option record that is once make the home session.</p>										
+										</div>
+										<!-- hacia la izquierda -->
+										<div  class="ayudaImagen" align="center">
+										  <img src="medios/DATOS.png" width="200px" height="300px" align="center"/>
+										  
+										</div>
+								<!-- DIV  PARA  LIMPIAR LA POSICION LEF  DE LOS  DIV   DE ARRIBA -->
+								<div class="ayudas" style="clear:both;">
+								</div>
+							</div>
+							<div class="Ayudota" data-role="collapsible">
+								<!-- TITULO DE LA  INQUIETUD -->
+								<h2>Create resume</h2>
+									
+									<!-- hacia la derecha -->
+										<div class="ayudaTexto" >
+											<p>Create your resume format SENA, by pressing the resume option bearing in mind that you should have started session.</p>										
+										</div>
+										<!-- hacia la izquierda -->
+										<div  class="ayudaImagen" align="center">
+										  <img src="medios/HOJA.png" width="200px" height="300px" align="center"/>
+										  
+										</div>
+									<!-- DIV  PARA  LIMPIAR LA POSICION LEF  DE LOS  DIV   DE ARRIBA -->
+								<div class="ayudas" style="clear:both;">
+								</div>
+							</div>
+							<div class="Ayudota" data-role="collapsible">
+								<!-- TITULO DE LA  INQUIETUD -->
+								<h2>Facial authentication</h2>
+									
+									<!-- hacia la derecha -->
+										<div class="ayudaTexto" >
+											<p>The application has an option to perform facial authentication, so a photo will be taken with the camera of the device and the system will give or deny access; Depending on if this or not, the person registered in the system.</p>
+										<br>	
+										</div>
+										<!-- hacia la izquierda -->
+										<div  class="ayudaImagen" align="center">
+										
+										  <img src="medios/AUTENTICACION.png" width="200px" height="300px" align="center"/>
+										  
+										</div>
+									<!-- DIV  PARA  LIMPIAR LA POSICION LEF  DE LOS  DIV   DE ARRIBA -->
+								<div class="ayudas" style="clear:both;">
+								</div>
+							</div>
+					</div>
+				</div>	
+			</div>
+		</div>
+	</body>
+</html>

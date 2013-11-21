@@ -1,0 +1,131 @@
+<html>
+	<head>
+	<!-- este  va  de   IZQUIERDA A DERECHA  -->	
+	<script>
+	function cargado(){
+				// Función pixel para dónde colocar los pixeles y canales de color
+				function pixel(imageData, x, y, r, g, b, a){
+					//en los pixels al ser rgba hay que multiplicarlo por 4
+					inicial = (x + y * imageData.width) * 4;
+					//seleccionamos pixel con matriz
+					//indicamos el pixel(inicial) + el canal rgba
+					//canal 0 es rojo
+					imageData.data[inicial+0] = r;
+					//canal 1 es verde
+					imageData.data[inicial+1] = g;
+					//canal 2 es azul
+					imageData.data[inicial+2] = b;
+					//el 3 sería el opaco
+					imageData.data[inicial+3] = a;
+				}
+				//seleccionamos el canvas 
+				el_canvas = document.getElementById("canvas");
+				dibujo = el_canvas.getContext("2d");
+
+				// Cogemos el ancho y alto del canvas
+				width = parseInt(el_canvas.getAttribute("width"));
+				height = parseInt(el_canvas.getAttribute("height"));
+
+				//creamos un pixel array
+				imageData = dibujo.createImageData(width, height);
+
+				//1000001 pixel y posiciones aleatorias
+				for (i = 0; i < imageData.length(); i++) {
+					//calculamos las posiciones aleatoria
+					x = parseInt(Math.random() * width);
+					y = parseInt(Math.random() * height);
+					//calculamos el tono del color de manera aleatoria
+					r = parseInt(Math.random() * 256);
+					g = parseInt(Math.random() * 256);
+					b = parseInt(Math.random() * 256);
+					//La a será la propiedad opaco
+					a = 0xff;
+					//llamamos a la funcion pixel para crear pixel y 
+					//pasamos los parametros
+					pixel(imageData, x, y, r, g, b, a)
+				}
+				
+				//lo imprimimos en el canvas y las coordenadas
+				//dibujo.putImageData(imageData, 0, 0);
+				el_canvas.innerHTML=dibujo.getImageData;
+		
+	}
+	function mostarImagen(){
+		//recojemos el canvas poniendo la id del canvas html5 para relacionarlo
+		  var canvas = document.getElementById("canvas");
+		  //Cojemos la 2D para dibujar en él
+		 var contextFoto = canvas.getContext("2d");
+		  //creamos la nueva imagen 
+		  var img = new Image();
+		  //le decimos la ruta de la imagen
+		 img.src = "caras/23.jpg";
+		 //pasamos la imagen al 2d del canvas y se dibujará
+		 //en 0 0 podemos poner las cordenadas de donde empezar a dibujar la imagen
+		contextFoto.drawImage(img, -25, -25,100,100);
+		analizarImagen(contextFoto);
+	}
+	var puntos=0;
+	function analizarImagen(imagen){
+		//creamos un vector con los pixeles de la imagen.
+		vectImagen = imagen.getImageData(0,0,50,50);
+		var acumula=0;
+		var promedio=0;
+		
+		for (var i=3;i<vectImagen.data.length;i+=4){
+			//Se suman todos los bytes de cada canal (RGB)
+			//Para luego sacar el promedio
+			acumula=vectImagen.data[i-3]+vectImagen.data[i-2]+vectImagen.data[i-1];
+			promedio=acumula/3;
+			acumula=0;
+			//Busca los pixeles más claros
+			//Trata de encontrar la retina del ojo
+			if (promedio>190 && promedio<220){
+				//los puntos más claros los coloca de color rojo
+				vectImagen.data[i-3]=255;
+				vectImagen.data[i-2]=0;
+				vectImagen.data[i-1]=0;
+				puntos++;//Cuenta los puntos identificados
+			}
+		}
+		imagen.putImageData(vectImagen, 0, 0);
+		segmentarImagen(vectImagen)
+	}
+	function segmentarImagen(vectImagen){
+		var j=0;
+		var k=0;
+		var matImagen=new Array();
+		for (var i in vectImagen.data){
+			matImagen[k][j]= vectImagen.data[i];
+			if (j<200){j=0;}
+			k++;j++;
+		}
+		alert(k);
+		alert(j);
+	}
+	function convertirVect_Matriz(){
+		
+	}
+	//Función para invertir los colores de la imagen
+	function invertirColor(vectImagen){
+		for (var i=0;i<vectImagen.data.length;i+=4)
+		{
+			vectImagen.data[i]=255-vectImagen.data[i];
+			vectImagen.data[i+1]=255-vectImagen.data[i+1];
+			vectImagen.data[i+2]=255-vectImagen.data[i+2];
+			vectImagen.data[i+3]=255;
+		}
+		return vectImagen;
+	}
+	</script>
+		
+	
+	</head>
+	<body onload="mostarImagen()">
+	 <!-- Creamos la página -->
+	 <canvas id="canvas" width="50" height="50">
+		
+	</canvas>
+	<div id="valores"></div>
+	</body>
+
+</html>
