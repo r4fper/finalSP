@@ -1,9 +1,3 @@
-/* 09/11/2013 4:54 */
-
-/*variable global que contiene el objeto XMLHttp*/
-var peticion;
-var login;
-var usu;
 /* funcion para conectarnos al servidor*/
 function consultarServidor(opc,pag) {
 	//Si hay conexión a Internet
@@ -15,11 +9,40 @@ function consultarServidor(opc,pag) {
 		//Prepara la petición dependiento de lo solicitado
 		switch (opc){
 			case "autenticar":
-				var tipo=1;//tipo de  documento:cedula
-				usu= document.getElementById("txtUsuario").value;
-				var contra= document.getElementById("txtPassword").value;
-				var parametro = "usu="+usu+"&contra="+contra+"&tipo="+tipo;
-				servidor="http://amoryamistadcnca.260mb.net/autenticar.php";
+			var tipo=1;
+			usu= $("#txtUsuario").val();
+			var contra= $("#txtPassword").val();
+				$.ajax({
+					url:'http://amoryamistadcnca.260mb.net/autenticar.php',
+					type:'post',
+					dataType: 'json',
+					data:{tipo:tipo,usu:usu,contra:contra},
+					beforeSend: function () {
+                        /* Llamamos el funcion del cargando */
+						crearCargando(pag);
+                	},
+                	success: function(data){
+                		switch (data[1]){
+						case '-1':
+						    navigator.notification.alert("Debe digitar su Usuario y Password.","Login");
+						break;
+						case '1':
+							//Guarda el usuario autenticado
+							window.localStorage.setItem("login", usu);
+							location.href='home.html';
+						break;
+						default:
+							navigator.notification.alert("Usuario y/o Password invalidos.","Login");
+					}
+                	}
+
+
+				});
+				// var tipo=1;//tipo de  documento:cedula
+				// usu= document.getElementById("txtUsuario").value;
+				// var contra= document.getElementById("txtPassword").value;
+				// var parametro = "usu="+usu+"&contra="+contra+"&tipo="+tipo;
+				// servidor="http://amoryamistadcnca.260mb.net/autenticar.php";
 			break;
 			case "buscarOferta":
 				var programa= document.getElementById("txtBuscar").value;
@@ -93,7 +116,7 @@ var timer;
 /*TEMPORIZADOR*/
 function Temporizador(){
 	var car = document.getElementById("cargando");			
-	timer=setTimeout("tiempoExcedido();",15000);
+	timer=setTimeout("tiempoExcedido();",10000);
 }
 /* Elimina CARGANDO */
 function eliminarCargando(){
@@ -134,18 +157,18 @@ function procesarPeticion() {
 			resp = datos.split("&_");
 			/*AUTENTICACION*/
 			if (resp[0]=='auten') {
-					switch (resp[1]){
-						case '-1':
-						    navigator.notification.alert("Debe digitar su Usuario y Password.","Login");
-						break;
-						case '1':
-							//Guarda el usuario autenticado
-							window.localStorage.setItem("login", usu);
-							location.href='home.html';
-						break;
-						default:
-							navigator.notification.alert("Usuario y/o Password invalidos.","Login");
-					}
+					// switch (resp[1]){
+					// 	case '-1':
+					// 	    navigator.notification.alert("Debe digitar su Usuario y Password.","Login");
+					// 	break;
+					// 	case '1':
+					// 		//Guarda el usuario autenticado
+					// 		window.localStorage.setItem("login", usu);
+					// 		location.href='home.html';
+					// 	break;
+					// 	default:
+					// 		navigator.notification.alert("Usuario y/o Password invalidos.","Login");
+					// }
 			/*PROGRAMAS OFERTA*/
 			}else if (resp[0]=='ofer'){
 				switch (resp[1]){
@@ -803,4 +826,3 @@ function analizarImagen(){
 		
 	}
 }
-

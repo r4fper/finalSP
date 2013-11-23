@@ -50,15 +50,7 @@ background:white;
 color:black;
 border:0;
 }
-/*Icono flecha para SELECT*/
-span.ui-icon.ui-icon-flecha.ui-icon-shadow {
-	width: 7%;
-	height: 100%;
-	top:9px;
-	right:1px;
-	background-color: #fff;
-	padding-bottom: 0px;
-}
+
 /* OFERTAS jenny*/
 div.ui-collapsible.ui-collapsible-collapsed{
 	margin: 5px 0;
