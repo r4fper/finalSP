@@ -30,36 +30,7 @@
 
 <body >
    <div id="pagCentro" data-role="page" data-theme="d">
-   		<script>
-		$(document).ready(function(){
-			verificarIdioma('pagCentro');
-			eliminarCargando();
-      cargarCombo();
-       $("#centros").change(function(){
-          var opc = $(this).val();
-          if(opc!=-1){
-            var ltlg = opc.split(',');
-            var latlng = new google.maps.LatLng(ltlg[0],ltlg[1]);
-               var myOptions = {
-               zoom: 10,
-               center: latlng,
-               mapTypeId: google.maps.MapTypeId.ROADMAP
-               };
-               var map = new google.maps.Map(document.getElementById("map"), myOptions);
-               var marker = new google.maps.Marker({
-               position: new google.maps.LatLng(ltlg[0],ltlg[1]),
-               map: map
-               });
-          }
-          else
-          {
-            cargarMapa();
-          }
-       });
-    });
-	
-	
-		</script>
+
 			<!-- CABECERA-->
 			<div data-role="header" data-theme="a" >
 				<div data-theme="d" width="100%" class="barnner1">
@@ -86,24 +57,30 @@
 			<!-- CONTENIDO DE LA PAGINA -->
 			<div data-role="content" data theme="d">
 				<!-- NAVEGACION EN GOOGLE MAPS -->
-			<div style="margin: 0 auto;">
-				<select id="centros">
-					<option value="-1">Todos los Centros</option>
-				</select>
+				<div style="margin: 0 auto;">
+					<select id="centros">
+						<option value="-1">Todos los Centros</option>
+					</select>
+					<div id='imgGoogle' ><br>
+						<img src='medios/marker.png'/>
+						<a href="" style="text-decoration:none; color:grey">Plano del Centro</a>
+				</div>
+				<div id="imgPlano" align="center">
+		   			<img src="medios/plano.png" align="center"/>
+		   		</div>
+				</div>
+				<div id="map" style: "margin:0 auto;"></div>	
+				<div id='imgPlano'>
+					<img src='medios/Google.png'/>
+					<a href="" style="text-decoration:none; color:grey">Google Maps</a> 
+				</div>
+				<div id='imgInfo' >
+					<img src='medios/info.png'/>
+					<a href="" style="text-decoration:none; color:grey">Informaci&oacute;n</a>
+				</div>					
 			</div>
-			<div id="map" style="width: 450px; height: 450px; margin:0 auto;"></div>						
-			<div>
-				<img src='medios/marker.png'/>
-				<a href="" style="text-decoration:none; color:grey">Plano del Centro</a> 
-			</div>
-			<div>
-				<img src='medios/google.png'/>
-				<a href="" style="text-decoration:none; color:grey">Google Maps</a>
-			</div>
-			</div>
-
 			
-		</div>
+			</div>
 
 </body>
 </html>
