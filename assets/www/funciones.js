@@ -1,11 +1,10 @@
 /* funcion para conectarnos al servidor*/
 function consultarServidor(opc,pag) {
-	//Si hay conexión a Internet
 	var servidor='';
-	    /* Llamamos el funcion del cargando */
-		crearCargando(pag);
+    /* Llamamos el funcion del cargando */
+	crearCargando(pag);
+	//Si hay conexión a Internet
 	if (obtenerRed()) {
-
 		//Prepara la petición dependiento de lo solicitado
 		switch (opc){
 			case "autenticar":
@@ -24,7 +23,7 @@ function consultarServidor(opc,pag) {
                 	success: function(data){
                 		switch (data[1]){
 						case '-1':
-						    navigator.notification.alert("Debe digitar su Usuario y Password.","Login");
+						    navigator.notification.alert("Debe digitar su Usuario y Password.",null,"Login");
 						break;
 						case '1':
 							//Guarda el usuario autenticado
@@ -32,7 +31,7 @@ function consultarServidor(opc,pag) {
 							location.href='home.html';
 						break;
 						default:
-							navigator.notification.alert("Usuario y/o Password invalidos.","Login");
+							navigator.notification.alert("Usuario y/o Password invalidos.",null,"Login");
 					}
                 	}
 
@@ -310,9 +309,82 @@ function obtenerRed() {
 }
 
 //FUNCIONES PARA LA MANPULACIÓN DE ARCHIVOS LOCALES
+function sistemaArchivo(){
+	this.estadoFS=false;
+	this.crearFS=crearFS;
+	this.escribirArchivo=escribirArchivo;
+	this.leerArchivo=leerArchivo;
+}
+
+function crearFS(){
+	//Crea el sistema de archivo
+	window.requestFileSystem(LocalFileSystem.TEMPORARY,0,function(){this.estadoFS=true;},null);
+}
+
+//Escribir en el archivo temporal
+function escribirArchivo(contenido){
+	var nomArchivo;
+	fs.root.getFile(nomArchivo, 
+		{create: true},
+		function(file){
+			file.createWriter(
+				//Trata de escribir o crear el archivo que contendrá la información.
+				function(escritor){
+					escritor.writer(contenido);
+				},
+				//Si ocurre un error no hace nada
+				null);
+		},
+		null);
+}
+
+function manejadorDeContenido(){
+	
+}
+//Función para leer los archivos locales que contienen los datos
+function leerArchivo(){
+	//Objeto para leer el archivo 
+	var lector = new FileReader();
+	//Evento cuando finaliza de leer el archivo
+	lector.onloadend = function(e) {
+		//Muestra el contenido en la capa correspondiente
+		alert(e.target.result);
+	};
+	//Si ocurre un error consulta en el servidor
+	lector.onloaderror = function(e) {
+		consultarServidor(pagina,opcion);
+	};
+	//Lee el contenido del archivo
+	lector.readAsText(file);
+}
+
+
+
+function onCreateWriterSuccess(escritor) {
+	writer.write(contenido);
+}
+
 //Función para tener acceso al Sistema de Archivo
-function accederFS() {
-	window.requestFileSystem(LocalFileSystem.PERMANENT, 5242880, accesoOK, accesoError);
+function accederFS(pagina) {
+	theFile.createWriter(onCreateWriterSuccess, onFileError);
+	window.requestFileSystem(LocalFileSystem.TEMPORARY, 0, function(fs){
+		
+		switch (pagina){
+			case 'ofertas':
+				fs.root.getFile("ofertas.txt", {create: true, exclusive: false}, 
+				//Trata de escribir o crear el archivo que contendrá la información de las Ofertas.
+				function(lapiz){
+					lapiz.writer(contenido);
+				},
+				//Si ocurre un error no hace nada
+				null);
+			break;
+			case 'certificados':
+				
+			break;
+		}
+	}, accesoError);
+	
 }
 
 function accesoOK(fs) {
