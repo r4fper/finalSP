@@ -10,7 +10,7 @@ function consultarServidor(opc,pag) {
 			case "autenticar":
 			var tipo=1;
 			usu= $("#txtUsuario").val();
-			var contra= $("#txtPassword").val();
+			contra= $("#txtPassword").val();
 				$.ajax({
 					url:'http://amoryamistadcnca.260mb.net/autenticar.php',
 					type:'post',
@@ -308,22 +308,25 @@ function obtenerRed() {
 	}
 }
 
-//FUNCIONES PARA LA MANPULACIÓN DE ARCHIVOS LOCALES
+//--------FUNCIONES PARA LA MANPULACIÓN DE ARCHIVOS LOCALES--------------------
+//Clase para trabajar con el Sistema de Archivo
 function sistemaArchivo(){
-	this.estadoFS=false;
-	this.crearFS=crearFS;
-	this.escribirArchivo=escribirArchivo;
-	this.leerArchivo=leerArchivo;
+	this.FS=null;//Variable que contiene el Sistema de Archivo(FS)
+	this.crearFS=crearFS; //Método para tener acceso al FS
+	this.escribirArchivo=escribirArchivo;//Método crear/modificar el archivo
+	this.leerArchivo=leerArchivo;//Método leer el contenido del archivo
+	this.fechaArchivo=fechaArchivo;//Método ver la fecha de modificación el archivo
 }
 
 function crearFS(){
 	//Crea el sistema de archivo
-	window.requestFileSystem(LocalFileSystem.TEMPORARY,0,function(){this.estadoFS=true;},null);
+	window.requestFileSystem(LocalFileSystem.TEMPORARY,0,function(fs){this.FS=fs; return true;},null);
 }
 
 //Escribir en el archivo temporal
 function escribirArchivo(contenido){
 	var nomArchivo;
+	var fs=this.FS;
 	fs.root.getFile(nomArchivo, 
 		{create: true},
 		function(file){
@@ -338,63 +341,67 @@ function escribirArchivo(contenido){
 		null);
 }
 
-function manejadorDeContenido(){
-	
-}
 //Función para leer los archivos locales que contienen los datos
-function leerArchivo(){
-	//Objeto para leer el archivo 
-	var lector = new FileReader();
-	//Evento cuando finaliza de leer el archivo
-	lector.onloadend = function(e) {
-		//Muestra el contenido en la capa correspondiente
-		alert(e.target.result);
-	};
-	//Si ocurre un error consulta en el servidor
-	lector.onloaderror = function(e) {
-		consultarServidor(pagina,opcion);
-	};
-	//Lee el contenido del archivo
-	lector.readAsText(file);
-}
-
-
-
-function onCreateWriterSuccess(escritor) {
-	writer.write(contenido);
-}
-
-//Función para tener acceso al Sistema de Archivo
-function accederFS(pagina) {
-	theFile.createWriter(onCreateWriterSuccess, onFileError);
-	window.requestFileSystem(LocalFileSystem.TEMPORARY, 0, function(fs){
-		
-		switch (pagina){
-			case 'ofertas':
-				fs.root.getFile("ofertas.txt", {create: true, exclusive: false}, 
-				//Trata de escribir o crear el archivo que contendrá la información de las Ofertas.
-				function(lapiz){
-					lapiz.writer(contenido);
+function leerArchivo(pagina){
+	var documento=pagina.split('.');
+	documento[0]+='.txt';
+	var fs=this.FS;
+	fs.root.getFile(documento[0], 
+		{create: false},
+		function(archivo){
+			archivo.file(
+				//Trata de escribir o crear el archivo que contendrá la información.
+				function(){
+					//Objeto para leer el archivo 
+					var lector = new FileReader();
+					//Evento cuando finaliza de leer el archivo
+					lector.onloadend = function(e) {
+						//devuelve el contenido del archivo
+						return e.target.result;
+					};
+					//Si ocurre un error devuelve 'false'
+					function(e) {
+						return false;
+					};
+					//Lee el contenido del archivo
+					lector.readAsText(file);
 				},
 				//Si ocurre un error no hace nada
-				null);
-			break;
-			case 'certificados':
-				
-			break;
-		}
-	}, accesoError);
-	
+				null
+			);
+		},
+		null
+	);
+
 }
 
-function accesoOK(fs) {
-	//Esta ruta debe guardarse de forma permanente
-	var ruta;
-	ruta=fs.root.fullPath;//Ruta de almacenaje
-	//Creamos un objeto para leer el directorio
-	var dr = fs.root.createReader();
-	// Obtiene la lista de todos las entradas(archivos/directrios) del directorio
-	dr.readEntries(leerDirOK, leerDirError);
+//Verifica la fecha de modificación del archivo
+function fechaArchivo(pagina){
+	var documento=pagina.split('.');
+	documento[0]+='.txt';
+	var fs=this.FS;
+	
+	fs.root.getFile(documento[0], 
+		{create: false},
+		function(archivo){
+			archivo.getMetadata(
+			//Función para obtener la diferencia entre 
+			//la fecha de creación y la actual.
+			//Si el archivo está desactualizado (>15min), 
+			//tomará la decisión de ir servidor. 
+			function(propiedad){
+				var fechaActual =new Date();
+				var fechaModificacion =propiedad.modificationTime;
+				var diferenciaFecha=fechaActual-fechaModificacion;
+				if (diferenciaFecha<15){
+					return true;
+				}
+				return false;
+			},
+			function(){return false});
+		},
+		null
+	);
 }
 
 function accesoError(e) {
@@ -443,27 +450,32 @@ function accesoError(e) {
 	navigator.notification.alert(msgText, null, "Error de Archivo");
 }
 
-//Leer contenido del directrio
-function leerDirOK(dirContenido){
-	var i, fl, len, mensaje;
-	len = dirContenido.length;
-	if(len > 0) {
-		fl = '<ul data-role="listview">';
-		for( i = 0; i < len; i++) {
-			if(dirEntries[i].isDirectory) {
-				fl += '<li><a href="#" onclick="processEntry(' + i +');">Directory: ' + dirContenido[i].name + '</a></li>';
-			} else {
-				fl += '<li><a href="#" onclick="processEntry(' + i +');">File: ' + dirContenido[i].name + '</a></li>';
-			}
-			fl += "</ul>";
+/*-----MANEJA EL ACCESO A LOS ARCHIVOS LOCALES------
+ Este sistema trabaja como memoria cache, almacenando la información
+ previamente consultada. Con esto se consigue mayor rapidez en el acceso a datos
+ y activada el modo offline, en el que podemos navegar por la información en cache 
+ sin estar conectado a internet. Al recuperar la conexión se actualiza el cache. 
+ Se basa en la Clase sistemaArchivo y sus métodos para manipular los archivos.
+ */
+function manejadorDeContenido(opcion,pagina){
+	manejadorArchivo= new sistemaArchivo;
+	if (manejadorArchivo.crearFS()){
+		switch(pagina){
+			case 'ofertas.html':
+				if (manejadorArchivo.leerArchivo(pagina)){
+					var contenido=manejadorArchivo.leerArchivo(pagina);
+				}else if (obtenerRed()){
+					consultarServidor(opcion,pagina);
+				}
+				
+			break;
+			/*
+			 Todas las opciones
+			 */
 		}
-	} else {
-		fl = "<p>No se encontraron archivos</p>";
 	}
-	//Actualizamos la página
-	mensaje=document.getElementById("mensaje");
-	mensaje.innerHTML=fl; 
 }
+
 
  
 /* Botón terminar de inscripcion */
